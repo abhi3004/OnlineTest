@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        {% load static %}
+        <script src={% static 'exam/main.js' %} type="text/javascript"></script>
+        <style>
+        .button1 {padding: 10px 15px;}
+        </style>
+    </head>
+    <body ng-app="app">
+        <div ng-controller="testCtrl as test">
+            <div class="panel panel-info">
+                    <div class="panel-heading"><h3>Section Test</h3></div>
+                    <div class="panel-body">
+                        
+                        <div class="row">
+                          
+                        <div class="col-lg-3">
+                                {% verbatim %}
+                            <span ng-repeat="i in test.questions">
+                            <span ng-repeat="j in test.questions">  
+                            <span ng-if="i==1 || (i==2 && j!=5)"><button  class="btn btn-info button1" role="button" ng-click="test.q_select(j+(i-1)*5)">0{{j+(i-1)*5}}</button></span>
+                            <span ng-if="i!=1 && (i==2 && j==5)"><button  class="btn btn-info button1" role="button" ng-click="test.q_select(j+(i-1)*5)">{{j+(i-1)*5}}</button></span>
+                            <span ng-if="i!=1 && i!=2"><button  class="btn btn-info button1" role="button" ng-click="test.q_select(j+(i-1)*5)">{{j+(i-1)*5}}</button></span>
+                            </span>
+                        <br></br>
+                        </span>
+                            
+                        <br></br>
+                        </div>
+                        <div class="col-lg-6">
+                                <button class="btn btn-primary btn-lg" role="button" ng-click="test.prev(test.q_no)"> <span class="glyphicon glyphicon-arrow-left"></span> Previous</button>
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+                                 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+                                &nbsp &nbsp &nbsp &nbsp 
+                                        <button class="btn btn-primary btn-lg" role="button" ng-click="test.nexty(test.q_no)">  Next <span class="glyphicon glyphicon-arrow-right"></span></button>
+                             <br></br>
+                                Q{{test.q_no}}) {{test.question[test.q_no-1]}}
+                            </div>
+                        
+                        </div>
+                        {% endverbatim %}
+                        </div>
+                  </div>
+                </div>
+        
+    </body>
+</html>
